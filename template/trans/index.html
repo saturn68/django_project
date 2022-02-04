@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block con %}
+    <div class="container mt-5 mb-5" style="width: 80%;">
+        <h1><b>번역기</b></h1>
+        <form method="post">
+            <div class="row mt-5 text-center">
+                
+                {% csrf_token %}
+                <div class="col-lg-5">
+                    <textarea name="bf" class="form-control" style="height: 300px;" placeholder="번역전 텍스트를 입력해주세요.">{{bf}}</textarea>
+                </div>
+                <div class="col-lg-2" style="margin: auto;">
+                    <select name="src" class="form-select" size="4" aria-label="size 4 select example">
+                        {%for code,name in ndict.items%}
+                            <option value="{{code}}" {%if src%}{%if src == code%} selected{%endif%}{%else%}{%if code == 'ko'%}selected{%endif%}{%endif%}>{{name}}</option>
+                        {%endfor%}
+                        <!--<option value="ko"{%if src == 'ko'%}selected{%endif%}>한국어</option>
+                        <option value="ja"{%if src == 'ja'%}selected{%endif%}>일본어</option>
+                        <option value="zh-cn"{%if src == 'zh-cn'%}selected{%endif%}>중국어</option>
+                        <option value="en"{%if src == 'en'%}selected{%endif%}>영어</option>-->
+                    </select>
+                    <button class="btn btn-dark mt-3 mb-3">번역</button>
+                    <select name="dest" class="form-select" size="4" aria-label="size 4 select example">
+                        {%for code,name in ndict.items%}
+                            <option value="{{code}}" {%if src%}{%if src == code%} selected{%endif%}{%else%}{%if code == 'en'%}selected{%endif%}{%endif%} disabled>{{name}}</option>
+                        {%endfor%}
+
+
+                        <!--<option value="ko" {%if src == 'ko'%}selected{%endif%}>한국어</option>
+                        <option value="ja" {%if src == 'ja'%}selected{%endif%}>일본어</option>
+                        <option value="zh-cn" {%if src == 'zh-cn'%}selected{%endif%} >중국어</option>
+                        <option value="en" {%if src == 'en'%}selected{%endif%}>영어</option>-->
+                    </select>
+                </div>
+                
+                <div class="col-lg-5">
+                    <textarea class="form-control" style="height: 300px;">{{af}}</textarea>
+                </div>
+            </div>
+        </form>
+    </div>
+
+{% endblock %}
+
+

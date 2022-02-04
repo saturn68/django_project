@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block con %}
+    <div class="container mt-5 mb-5" style="width: 80%;">
+        <h1><b>{{user}}'s BOOKMARK</b></h1>
+
+        <div class="text-end">
+            <a href="{%url 'book:create'%}"><button class="btn btn-dark">CREATE</button></a>
+        </div>
+        {%if user == request.user%}
+            <div class="row">
+                {%for i in blist%}
+                    <div class="col-lg-4">
+                        <div class="card"style="width: 18rem;" >
+                            <div class="card-body"style="{%if i.impo%}background-color: rgb(249,233,116){%endif%}">
+                                <h5 class="card-title">{{i.site_name}}</h5>
+                                <h6 class="card-subtitle mb-2 text-muted">{{i.user}}</h6>
+                                <p class="card-text">{{i.content}}</p>
+                                <a href="{{i.site_url}}" class="card-link"><button class="btn btn-dark">{{i.site_name}}</button></a>
+                                <a href="#" class="card-link"><button class="btn btn-danger">DEL</button></a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                {%endfor%}
+            </div>
+        {%else%}
+        {%endif%}
+    </div>
+{% endblock %}

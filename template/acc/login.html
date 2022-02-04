@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% block anycon %}
+
+
+
+<div class="container mt-5" style="width: 60%;">
+    <h1><b>로그인</b></h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <div class="mt-5">
+            <input type="text" class="form-control" placeholder="Input Username" name="uname">
+            <input type="password" class="form-control mt-3" placeholder="Input Password" name="upass">
+        </div>
+        <div class="text-end mt-3">
+            <button class="btn btn-outline-primary">로그인</button>
+            <a href="{% url 'acc:signup' %}"><button type="button" class="btn btn-outline-primary">회원가입</button></a>
+        </div>
+    </form>
+</div>
+
+{% endblock %}
